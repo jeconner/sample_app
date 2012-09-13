@@ -2,18 +2,18 @@ require 'spec_helper'
 
 describe "User pages" do
 
-	subject { page }
+  subject { page }
 
   describe "profile page" do
-  	let(:user) { FactoryGirl.create(:user) }
-  	before { visit user_path(user) }
+    let(:user) { FactoryGirl.create(:user) }
+    before { visit user_path(user) }
 
-  	it { should have_selector('h1',    text: user.name) }
-  	it { should have_selector('title', text: user.name) }
+    it { should have_selector('h1',    text: user.name) }
+    it { should have_selector('title', text: user.name) }
   end
 
   describe "signup" do
-  	before { visit signup_path }
+    before { visit signup_path }
     let(:submit) { "Create my account" }
 
     describe "with invalid information" do
@@ -47,6 +47,7 @@ describe "User pages" do
 
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_link('Sign out') }
       end
     end
   end
